@@ -41,6 +41,8 @@ public class filmGUI extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("film?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         filmerQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT f FROM Filmer f");
         filmerList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : filmerQuery.getResultList();
+        filmerQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT f FROM Filmer f");
+        filmerList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : filmerQuery1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -58,24 +60,24 @@ public class filmGUI extends javax.swing.JFrame {
 
         jTable1.setAutoCreateRowSorter(true);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, filmerList, jTable1);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, filmerList1, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${betyg}"));
         columnBinding.setColumnName("Id");
-        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setColumnClass(Long.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${namn}"));
         columnBinding.setColumnName("Namn");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${regisor}"));
-        columnBinding.setColumnName("Regisor");
+        columnBinding.setColumnName("Regisör");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${genre}"));
         columnBinding.setColumnName("Genre");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${betyg}"));
         columnBinding.setColumnName("Betyg");
-        columnBinding.setColumnClass(Long.class);
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
-
+        jTableBinding.bind();
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -195,10 +197,10 @@ public class filmGUI extends javax.swing.JFrame {
             String regisor = jTextField2.getText();
             String genre = jTextField3.getText();
             String betyg = jTextField4.getText();
-            
             Connection connection = connectionFactory.getConnection();
             Statement stmt = connection.createStatement();
             String sql = String.format("INSERT INTO filmer VALUES(NULL,'%s','%s','%s','%s')", namn,regisor,genre,betyg);
+            
             stmt.executeUpdate(sql);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -244,7 +246,9 @@ public class filmGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager;
     private java.util.List<javaprojekt1.Filmer> filmerList;
+    private java.util.List<javaprojekt1.Filmer> filmerList1;
     private javax.persistence.Query filmerQuery;
+    private javax.persistence.Query filmerQuery1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
