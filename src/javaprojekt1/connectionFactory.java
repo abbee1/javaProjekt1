@@ -7,6 +7,7 @@ package javaprojekt1;
 
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 
 /**
@@ -22,5 +23,9 @@ public class connectionFactory {
     Class.forName("com.mysql.jdbc.Driver");
     Connection connection = (com.mysql.jdbc.Connection)DriverManager.getConnection(url, username, password);
     return connection;
+    }
+
+    Statement createStatment() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

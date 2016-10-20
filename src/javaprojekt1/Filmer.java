@@ -54,7 +54,7 @@ public class Filmer implements Serializable {
     private String genre;
     @Basic(optional = false)
     @Column(name = "betyg")
-    private long betyg;
+    private String betyg;
 
     public Filmer() {
     }
@@ -63,7 +63,7 @@ public class Filmer implements Serializable {
         this.id = id;
     }
 
-    public Filmer(Integer id, String namn, String regisor, String genre, long betyg) {
+    public Filmer(Integer id, String namn, String regisor, String genre, String betyg) {
         this.id = id;
         this.namn = namn;
         this.regisor = regisor;
@@ -111,12 +111,12 @@ public class Filmer implements Serializable {
         changeSupport.firePropertyChange("genre", oldGenre, genre);
     }
 
-    public long getBetyg() {
+    public String getBetyg() {
         return betyg;
     }
 
-    public void setBetyg(long betyg) {
-        long oldBetyg = this.betyg;
+    public void setBetyg(String betyg) {
+        String oldBetyg = this.betyg;
         this.betyg = betyg;
         changeSupport.firePropertyChange("betyg", oldBetyg, betyg);
     }
