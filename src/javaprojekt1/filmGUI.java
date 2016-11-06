@@ -122,6 +122,11 @@ public class filmGUI extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton3KeyPressed(evt);
+            }
+        });
 
         jButton2.setText("Radera");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -325,6 +330,10 @@ public class filmGUI extends javax.swing.JFrame {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
 
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3KeyPressed
 
     private void updateTableFromDatabase() throws Exception {
         try {
