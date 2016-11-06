@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -318,9 +319,12 @@ public class filmGUI extends javax.swing.JFrame {
             Connection connection = connectionFactory.getConnection();
             Statement stmt = connection.createStatement();
             String sql = String.format("INSERT INTO filmer VALUES(NULL,'%s','%s','%s','%s')", namn, regisor, genre, betyg);
-
+            if(namn == null){
+                JOptionPane.showMessageDialog(null, "Filmen finns inte hos IMDB! Du kan lägga till din film till höger");
+            }else{
             stmt.executeUpdate(sql);
             updateTableFromDatabase();
+            }
             hideID();
         } catch (Exception ex) {
             System.out.println(ex);
